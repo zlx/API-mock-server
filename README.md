@@ -2,6 +2,8 @@
 
 A Fully Functional API Mock Server
 
+![Demo](https://raw.github.com/zlx/API-mock-server/master/public/image/demo.png)
+
 ## Installation
 
 ### Install Mongodb
