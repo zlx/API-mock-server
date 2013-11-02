@@ -2,3 +2,4 @@
 vendor/bundle
 mongoid.yml
 unicorn.rb
+*.swp

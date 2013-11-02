@@ -17,6 +17,7 @@ A Fully Functional API Mock Server
 ### Install Dependancy
 
     bundle install --path=vendor/bundle
+    gem install shotgun
 
 
 ## Usage
