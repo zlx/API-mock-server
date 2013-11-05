@@ -1,6 +1,6 @@
 # Mock API Server
 
-A Fully Functional API Mock Server
+A Full-Featured  API Mock Server
 
 ![Demo](https://raw.github.com/zlx/API-mock-server/master/public/image/demo.png)
 
