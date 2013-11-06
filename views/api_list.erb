@@ -1,20 +1,28 @@
-<div class="div-container">
-  <ul class="well nav nav-pills nav-stacked">
-    <% ::ApiMockServer::Endpoint.asc(:pattern).each do |endpoint| %>
-      <li class="<%= endpoint == current ? 'active' : '' %>">
-      <a href="/admin/<%= endpoint.id %>">
-        <div class="label-api label-api-full">
-          <span class="label label-danger"><%= endpoint.verb.upcase %></span>
-          <strong><%= endpoint.pattern %></strong>
-          <% if endpoint.active %>
-            <span class='label label-success'>启用中</span>
-          <% else %>
-            <span class='label label-warning'>未启用</span>
+<div class="bs-sidebar hidden-print affix" role="complementary">
+  <ul class="nav bs-sidenav">
+    <% @categories.each do |category| %>
+      <li class="<%= current.try(:category) == category ? 'active' : '' %>">
+        <% routes = category == "未分类" ? 
+          ApiMockServer::Endpoint.where(:category.exists => false) : 
+          ApiMockServer::Endpoint.where(:category => category) %>
+        <a href="/admin/<%= routes.to_a.first.id %>"><%= category %></a>
+        <ul class='nav'>
+          <% routes.each do |route| %>
+            <li class="<%= current == route ? 'active' : '' %>">
+            <a href='/admin/<%= route.id %>'>
+                <span class="label label-danger"><%= route.verb.upcase %></span>
+                <strong><%= route.pattern %></strong>
+                <% if route.active %>
+                  <span class='label label-success'>启用中</span>
+                <% else %>
+                  <span class='label label-warning'>未启用</span>
+                <% end %>
+              </a>
+            </li>
           <% end %>
-        </div>
-      </a>
+        </ul>
       </li>
     <% end %>
   </ul>
-  <a href="/admin/new" class='btn btn-info col-lg-3 text-center'>创建新 API</a>
+  <a href="/admin/new" class='btn btn-primary btn-lg'>创建新 API</a>
 </div>

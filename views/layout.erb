@@ -28,8 +28,13 @@
     </div>
   </div>
 
-  <div class="container">
-    <%= yield %>
+  <div class="container" class='row'>
+    <div class="col-md-3">
+      <%= partial :api_list, locals: { current: @route } %>
+    </div>
+    <div class="col-md-9">
+      <%= yield %>
+    </div>
   </div>
   <script src="http://code.jquery.com/jquery-1.9.0.js"></script>
   <script src="/js/bootstrap.min.js"></script>

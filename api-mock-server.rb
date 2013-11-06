@@ -22,6 +22,7 @@ module ApiMockServer
     field :status, type: Integer
     field :params, type: Hash
     field :active, type: Boolean, default: true
+    field :category, type: String, default: "未分类"
 
     VALID_HTTP_VERBS = %w{get post put delete patch}
 
@@ -51,7 +52,7 @@ module ApiMockServer
       ps = ps.delete_if {|k, v| k.blank? }
       args["status"] = args["status"].blank? ? 200 : args["status"].to_i
       args["active"] = !args["active"].nil?
-      args = args.slice("verb", "pattern", "response", "status", "active")
+      args = args.slice("verb", "pattern", "response", "status", "active", "category")
       return args, ps
     end
 
@@ -67,6 +68,7 @@ module ApiMockServer
 
     configure :development, :test do
       set :partial_template_engine, :erb
+      register Sinatra::Reloader
 
       Mongoid.load!("mongoid.yml")
     end
@@ -82,21 +84,29 @@ module ApiMockServer
         @auth ||=  Rack::Auth::Basic::Request.new(request.env)
         @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == [::ApiMockServer.admin_user||'admin', ::ApiMockServer.admin_password||'admin']
       end
+
+      def prepare_api_list
+        @categories = ApiMockServer::Endpoint.distinct(:category)
+        @categories << "未分类" if ApiMockServer::Endpoint.where(:category.exists => false).exists?
+      end
     end
 
     get "/admin" do
       protected!
+      prepare_api_list
       erb :index
     end
 
     get "/admin/new" do
       protected!
+      prepare_api_list
       @route = Endpoint.new
       erb :new
     end
 
     post "/admin/new" do
       protected!
+      prepare_api_list
       @route = Endpoint.init_endpoint(params["route"])
       if @route.save
         erb :show
@@ -108,12 +118,14 @@ module ApiMockServer
 
     get "/admin/:id/edit" do
       protected!
+      prepare_api_list
       @route = Endpoint.find(params[:id])
       erb :edit
     end
 
     post "/admin/:id/edit" do
       protected!
+      prepare_api_list
       @route = Endpoint.find(params[:id])
       if @route.update_endpoint(params[:route])
         erb :show
@@ -125,6 +137,7 @@ module ApiMockServer
 
     delete "/admin/:id" do
       protected!
+      prepare_api_list
       content_type :json
       @route = Endpoint.find(params[:id])
       if @route.destroy
@@ -136,6 +149,7 @@ module ApiMockServer
 
     get "/admin/:id" do
       protected!
+      prepare_api_list
       @route = Endpoint.find params[:id]
       erb :show
     end

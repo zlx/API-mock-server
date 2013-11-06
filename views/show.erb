@@ -1,10 +1,4 @@
-<div id="main-container" class="row">
-  <div id="list-api-div" class="col-md-5">
-    <%= partial :api_list, locals: { current: @route } %>
-  </div>
-
-  <div id="show-api-div" class="col-md-7">
-    <div class="div-container">
+<div class="div-container">
       <ul class="breadcrumb">
         <li>
           <a href="/admin/<%= @route.id %>">
@@ -12,6 +6,7 @@
             <strong><%= @route.pattern %></strong>
           </a>
         </li>
+        <li><%= @route.category %></li>
           <div class='pull-right dropdown'>
            <a href='javascript:void(0)' class="dropdown-toggle" data-toggle="dropdown">操作<b class="caret"></b></a>
            <div class='dropdown-menu'>
@@ -22,11 +17,11 @@
       </ul>
 
       <% if @route.params && !@route.params.empty? %>
-        <div class="well">
+ <div class="well">
           <div>Params</div>
             <div class='col-md-offset-1'>
               <% @route.params.each do |key, value| %>
-                <div class='row'>
+ <div class='row'>
                   <div class='col-md-4'>
                     <strong><%= key %>:</strong>
                   </div>
@@ -50,4 +45,3 @@
       </div>
     </div>
   </div>
-</div>
