@@ -57,8 +57,12 @@ body {
 }
 
 .bs-sidebar .nav .nav {
-  /*display: none; [> Hide by default, but at >768px, show it <]*/
+  display: none;
   margin-bottom: 8px;
+}
+
+.bs-sidebar .nav > .active > ul {
+  display: block;
 }
 
 .bs-sidebar .nav .nav > li > a {
