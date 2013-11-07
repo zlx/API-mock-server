@@ -67,3 +67,7 @@ body {
   padding-left: 30px;
   font-size: 90%;
 }
+
+#editor {
+  height: 400px;
+}

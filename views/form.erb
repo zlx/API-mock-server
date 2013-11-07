@@ -1,4 +1,3 @@
-<link type="text/css" rel="stylesheet" href="/css/style.css" />
 <form action="<%= from == 'new' ? '/admin/new' : '/admin/' + @route.id + '/edit' %>", method="post", class="form-horizontal">
   <% if @error.present? %>
     <div class='alert alert-danger'>
@@ -63,11 +62,7 @@
 
   <div class="form-group well">
     <label class='col-md-2 control-label'>Response</label>
-    <div class='col-md-10' id='wrapper'>
-      <pre id="result"></pre>
-      <div id="output_wrapper"></div>
-      <textarea id="source" class='prettyprint' autocomplete="off" name="route[response]" placeholder="only suppory json format now!" spellcheck="false"><%= @route.response %></textarea>
-    </div>
+    <div class='col-md-10' id='editor'><%= @route.response %></div>
   </div>
 
   <div class="form-group active">
@@ -87,3 +82,12 @@
     </div>
   </div>
 </form>
+<script src="/js/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/mode-json.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/worker-json.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/theme-idle_fingers.js" type="text/javascript" charset="utf-8"></script>
+<script type'text/javascript'>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/idle_fingers");
+  editor.getSession().setMode("ace/mode/json");
+</script>
