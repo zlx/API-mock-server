@@ -1,4 +1,4 @@
-<form action="<%= from == 'new' ? '/admin/new' : '/admin/' + @route.id + '/edit' %>", method="post", class="form-horizontal">
+<form action="<%= from == 'new' ? '/admin/new' : '/admin/' + @route.id + '/edit' %>", method="post", class="form-horizontal" id='create-api'>
   <% if @error.present? %>
     <div class='alert alert-danger'>
       <%= @error.join("<br/>") %>
@@ -62,7 +62,8 @@
 
   <div class="form-group well">
     <label class='col-md-2 control-label'>Response</label>
-    <div class='col-md-10' id='editor'><%= @route.response %></div>
+    <div class='col-md-10' id='editor'></div>
+    <textarea name='route[response]'><%= @route.response %></textarea>
   </div>
 
   <div class="form-group active">
@@ -82,12 +83,18 @@
     </div>
   </div>
 </form>
+<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
 <script src="/js/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/mode-json.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/worker-json.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/theme-idle_fingers.js" type="text/javascript" charset="utf-8"></script>
 <script type'text/javascript'>
   var editor = ace.edit("editor");
+  var textarea = $('textarea[name="route[response]"]').hide();
   editor.setTheme("ace/theme/idle_fingers");
   editor.getSession().setMode("ace/mode/json");
+  editor.getSession().setValue(textarea.val());
+  editor.getSession().on('change', function(){
+    textarea.val(editor.getSession().getValue());
+  });
 </script>
