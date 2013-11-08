@@ -39,7 +39,8 @@ describe ApiMockServer do
     it "should create new route" do
       post "/admin/new", {route: {verb: 'get', pattern: '/me', active: 1, response: '{"me": "ok"}'}}
       expect(last_response).to be_ok
-      expect(last_response.body).to match(/<span class="text text-danger">GET<\/span>\n            <strong>\/me<\/strong>/)
+      expect(last_response.body).to match(/<span class="text text-danger">GET<\/span>/)
+      expect(last_response.body).to match(/<strong>\/me<\/strong>/)
     end
 
     it "should render error when missing pattern" do
@@ -57,7 +58,8 @@ describe ApiMockServer do
     it "should edit route" do
       post "admin/#{route.id}/edit", {route: {verb: 'post'}, active: 1}
       expect(last_response).to be_ok
-      expect(last_response.body).to match(/<span class="text text-danger">POST<\/span>\n            <strong>\/me<\/strong>/)
+      expect(last_response.body).to match(/<span class="text text-danger">POST<\/span>/)
+      expect(last_response.body).to match(/<strong>\/me<\/strong>/)
     end
 
     it "should render error when edit route not valid" do
@@ -82,7 +84,15 @@ describe ApiMockServer do
     it "should render show page" do
       get "/admin/#{route.id}"
       expect(last_response).to be_ok
-      expect(last_response.body).to match(/<span class="text text-danger">GET<\/span>\n            <strong>\/me<\/strong>/)
+      expect(last_response.body).to match(/<span class="text text-danger">GET<\/span>/)
+      expect(last_response.body).to match(/<strong>\/me<\/strong>/)
+    end
+
+    it "should render batch show page" do
+      get "/admin/batch_show", pattern: route.pattern
+      expect(last_response).to be_ok
+      expect(last_response.body).to match(/<span class="text text-danger">GET<\/span>/)
+      expect(last_response.body).to match(/<strong>\/me<\/strong>/)
     end
   end
 
