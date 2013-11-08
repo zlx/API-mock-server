@@ -87,7 +87,11 @@ module ApiMockServer
 
       def prepare_api_list
         @categories = ApiMockServer::Endpoint.distinct(:category)
-        @categories << "未分类" if ApiMockServer::Endpoint.where(:category.exists => false).exists?
+        if ApiMockServer::Endpoint.where(:category.exists => false).exists?
+          @categories << "未分类"
+          # 未分类可能重复添加
+          @categories.uniq!
+        end
       end
     end
 
@@ -145,6 +149,14 @@ module ApiMockServer
       else
         {error: @route.errors.full_messages.join(", "), url: "/admin/#{params[:id]}"}.to_json
       end
+    end
+
+    get "/admin/batch_show" do
+      protected!
+      prepare_api_list
+      @routes = Endpoint.where(pattern: params["pattern"])
+      @route = @routes.try(:first)
+      erb :batch_show
     end
 
     get "/admin/:id" do

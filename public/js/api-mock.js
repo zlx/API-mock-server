@@ -1,5 +1,7 @@
 jQuery(function($) {
-  $(".prettyprint").text(JSON.stringify(JSON.parse($(".prettyprint").text().trim() || "{}"), null, 2));
+  $(".prettyprint").each(function() {
+    $(this).text(JSON.stringify(JSON.parse($(this).text().trim() || "{}"), null, 2));
+  })
 
   $('#show-params').click(function() {
     $('#create-api .params').show();
@@ -18,7 +20,7 @@ jQuery(function($) {
 
   $(".delete").click(function(e) {
     e.preventDefault();
-    $.post($(this).href, {_method: "delete"}, function(response){
+    $.post($(this).attr("href"), {_method: "delete"}, function(response){
       alert(response.error);
       document.location = response.url;
     })

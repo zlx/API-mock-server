@@ -3,20 +3,14 @@
     <% @categories.each do |category| %>
       <li class="<%= current.try(:category) == category ? 'active' : '' %>">
         <% routes = category == "未分类" ? 
-          ApiMockServer::Endpoint.where(:category.exists => false) : 
-          ApiMockServer::Endpoint.where(:category => category) %>
-        <a href="/admin/<%= routes.to_a.first.id %>"><%= category %></a>
+          ApiMockServer::Endpoint.where(:category.exists => false).distinct(:pattern) : 
+          ApiMockServer::Endpoint.where(:category => category).distinct(:pattern) %>
+        <a href="/admin/batch_show?pattern=<%= routes.first %>"><%= category %></a>
         <ul class='nav'>
           <% routes.each do |route| %>
-            <li class="<%= current == route ? 'active' : '' %>">
-            <a href='/admin/<%= route.id %>'>
-                <span class="label label-danger"><%= route.verb.upcase %></span>
-                <strong><%= route.pattern %></strong>
-                <% if route.active %>
-                  <span class='label label-success'>启用中</span>
-                <% else %>
-                  <span class='label label-warning'>未启用</span>
-                <% end %>
+            <li class="<%= current.try(:pattern) == route ? 'active' : '' %>">
+              <a href='/admin/batch_show?pattern=<%= route %>'>
+                <strong><%= route %></strong>
               </a>
             </li>
           <% end %>

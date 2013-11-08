@@ -1,0 +1,53 @@
+<div class="div-container">
+  <ul class="breadcrumb">
+    <li>
+      <a href="/admin/<%= single_route.id %>">
+        <span class="text text-danger"><%= single_route.verb.upcase %></span>
+        <strong><%= single_route.pattern %></strong>
+      </a>
+    </li>
+    <li>
+    <% if single_route.active? %>
+       <span class='label label-success'>启用中</span>
+    <% else %>
+       <span class='label label-danger'>未启用</span>
+    <% end %>
+    </li>
+    <li><%= single_route.category %></li>
+    <div class='pull-right dropdown'>
+      <a href='javascript:void(0)' class="dropdown-toggle" data-toggle="dropdown">操作<b class="caret"></b></a>
+      <div class='dropdown-menu'>
+        <li><a href='/admin/<%= single_route.id %>/edit'>编辑</a></li>
+        <li><a href='/admin/<%= single_route.id %>' class='delete'>删除</a></li>
+      </div>
+    </div>
+  </ul>
+
+  <% if single_route.params && !single_route.params.empty? %>
+   <div class="well">
+     <div>Params</div>
+       <div class='col-md-offset-1'>
+       <% single_route.params.each do |key, value| %>
+         <div class='row'>
+           <div class='col-md-4'>
+             <strong><%= key %>:</strong>
+           </div>
+           <div class='col-md-8'>
+            <%= value %>
+           </div>
+         </div>
+       <% end %>
+       </div>
+    </div>
+  <% end %>
+
+  <div id="show-api-response-div" class="well">
+    <ul class="nav nav-tabs">
+      <li class="nav-label">Response</li>
+      <li class="label <%= single_route.status.to_s =~ /2\d{2}/ ? 'label-success' : 'label-danger' %>"><%= single_route.status %></li>
+    </ul>
+    <pre class="prettyprint" ref="response-json">
+      <%= single_route.response %>
+    </pre>
+  </div>
+</div>
