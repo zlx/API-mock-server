@@ -5,3 +5,10 @@ development:
       database: api_mock_server
       hosts: 
         - localhost:27017
+
+test:
+  sessions:
+    default:
+      database: api_mock_server_test
+      hosts: 
+        - localhost:27017
