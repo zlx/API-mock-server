@@ -5,4 +5,4 @@ rvm:
 services:
   - mongodb
 
-script: rspec api-mock-server_spec.rb
+script: bundle exec rspec api-mock-server_spec.rb
