@@ -1,6 +1,6 @@
 # Mock API Server
 
-A Full-Featured  API Mock Server  [![Code Climate](https://codeclimate.com/github/zlx/API-mock-server.png)](https://codeclimate.com/github/zlx/API-mock-server)
+A Full-Featured  API Mock Server  [![Code Climate](https://codeclimate.com/github/zlx/API-mock-server.png)](https://codeclimate.com/github/zlx/API-mock-server) [![Build Status](https://travis-ci.org/zlx/API-mock-server.png?branch=master)](https://travis-ci.org/zlx/API-mock-server)
 
 ![Demo](https://raw.github.com/zlx/API-mock-server/master/public/image/demo.png)
 
