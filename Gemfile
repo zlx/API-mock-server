@@ -5,6 +5,7 @@ gem 'sinatra', require: 'sinatra/base'
 gem "mongoid"
 gem "sinatra-partial"
 gem 'sinatra-contrib'
+gem 'rake'
 
 gem "pry"
 
