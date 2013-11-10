@@ -57,6 +57,40 @@ Top namespace is a global setting, so it will take an effect for every routes yo
 
 To config top_namespace in in [config.rb](https://github.com/zlx/API-mock-server/blob/master/config.rb)
 
+### How to redirect your routes to mock server
+
+
+## Add redirect route at the end of your route.rb
+
+```ruby
+constraints(Domain::Mockapi) do
+  get "/*any", to: redirect { |p, req| "http://<<your-mockapi-server>>/#{req.fullpath}" }
+end
+```
+
+## create domain/mockapi.rb file
+
+```ruby
+module Domain
+
+  APIs = %w{
+  }
+
+  class Mockapi
+    def self.matches? request
+      api = request.fullpath.sub(/\?.*/, "")
+      api.in? APIs
+    end
+  end
+
+end
+```
+
+Assign your mock apis in `APIs`
+
+
+[wiki](https://github.com/zlx/API-mock-server/wiki/Redirect-your-specific-routes-to-mockapi)
+
 
 ## Test
 
