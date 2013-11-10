@@ -60,7 +60,7 @@ To config top_namespace in in [config.rb](https://github.com/zlx/API-mock-server
 ### How to redirect your routes to mock server
 
 
-## Add redirect route at the end of your route.rb
+#### Add redirect route at the end of your route.rb
 
 ```ruby
 constraints(Domain::Mockapi) do
@@ -68,7 +68,7 @@ constraints(Domain::Mockapi) do
 end
 ```
 
-## create domain/mockapi.rb file
+#### create domain/mockapi.rb file
 
 ```ruby
 module Domain
