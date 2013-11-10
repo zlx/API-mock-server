@@ -25,14 +25,8 @@ A Full-Featured  API Mock Server
 ### Mongodb Config
 
 Configurate mongodb in mongoid.yml like below:
-   
-    development:
-      sessions:
-        default:
-          database: api_mock_server
-          hosts: 
-            - localhost:27017
 
+    cp mongoid.yml.example mongoid.yml
 
 
 ### Start Server
