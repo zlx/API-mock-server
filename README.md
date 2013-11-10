@@ -114,7 +114,7 @@ Assign your mock apis in `APIs`
 [Guide for setup unicorn for rack app](http://recipes.sinatrarb.com/p/deployment/nginx_proxied_to_unicorn)
 
 
-below is an example for unicorn config:[wiki]()
+Below is an simple example for unicorn configure:[wiki]()
 
 ```ruby
 # set path to app that will be used to configure unicorn,
