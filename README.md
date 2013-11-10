@@ -44,7 +44,7 @@ Configurate mongodb in mongoid.yml like below:
 ### How to config admin username/password ?
 
 
-Config admin_user and admin_password in [config.rb](https://github.com/zlx/API-mock-server/blob/master/config.rb)
+Config admin_user and admin_password in [apimockserver.rb](https://github.com/zlx/API-mock-server/blob/master/initializers/apimockserver.rb)
 
 
 ### How to config Top Namespace ?
@@ -55,7 +55,7 @@ for an example, if you config `top_namespace = "/api/v1"`, then you must visit "
 
 Top namespace is a global setting, so it will take an effect for every routes you created.
 
-To config top_namespace in in [config.rb](https://github.com/zlx/API-mock-server/blob/master/config.rb)
+To config top_namespace in in [apimockserver.rb](https://github.com/zlx/API-mock-server/blob/master/initializers/apimockserver.rb)
 
 ### How to redirect your routes to mock server
 
