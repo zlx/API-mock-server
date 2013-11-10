@@ -12,3 +12,11 @@ test:
       database: api_mock_server_test
       hosts: 
         - localhost:27017
+
+production:
+  sessions:
+    default:
+      database: api_mock_server
+      hosts: 
+        - localhost:27017
+

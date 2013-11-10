@@ -5,11 +5,14 @@ gem 'sinatra', require: 'sinatra/base'
 gem "mongoid"
 gem "sinatra-partial"
 gem 'sinatra-contrib'
-gem 'rake'
 
 gem "pry"
 
 group :test do
   gem "rspec"
   gem 'rack-test'
+end
+
+group :production do
+  gem 'unicorn'
 end

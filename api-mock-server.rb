@@ -63,13 +63,17 @@ module ApiMockServer
   end
 
   class App < Sinatra::Base
-    register Sinatra::Partial
-    use Rack::MethodOverride
-
-    configure :development, :test do
+    configure do
+      # for sinatra partial
+      register Sinatra::Partial
       set :partial_template_engine, :erb
+
+      use Rack::MethodOverride
+
+      # for sinatra reloader code when development
       register Sinatra::Reloader
 
+      # for use mongodb as backend
       Mongoid.load!("mongoid.yml")
     end
 
