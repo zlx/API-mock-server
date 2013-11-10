@@ -5,4 +5,4 @@ services:
   - mongodb
 
 before_install: cp mongoid.yml.example mongoid.yml
-script: bundle exec rspec api-mock-server_spec.rb
+script: bundle exec rspec test/api-mock-server_spec.rb
