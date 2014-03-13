@@ -1,0 +1,24 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class='navbar-header'>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/admin">API Mock Server</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="<%= request.path_info == '/admin' ? 'active' : '' %>">
+          <a href='/admin' class=''><%= ApiMockServer.top_namespace || "/" %></a>
+        </li>
+        <li class="<%= request.path_info == '/document' ? 'active' : '' %>">
+          <a href='/document' class=''>Document</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+  </div>
+

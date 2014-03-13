@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Mock Server Document</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/documents.css" rel="stylesheet">
+  </head>
+  <body>
+    <%= partial :header, locals: { from: 'new' } %>
+
+    <div class="container" class='row'>
+      <%= yield %>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+    <script src="/js/documents.js"></script>
+  </body>
+</html>
