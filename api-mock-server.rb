@@ -23,6 +23,7 @@ module ApiMockServer
     field :params, type: Hash
     field :active, type: Boolean, default: true
     field :category, type: String, default: "未分类"
+    field :desc, type: String
 
     VALID_HTTP_VERBS = %w{get post put delete patch}
 
@@ -97,6 +98,20 @@ module ApiMockServer
           @categories.uniq!
         end
       end
+    end
+
+    get '/document' do
+      protected!
+      prepare_api_list
+      @routes = {}
+      @categories.each do |c|
+        if c != '未分类'
+          @routes[c] = ApiMockServer::Endpoint.where(category: c)
+        else
+          @routes[c] = ApiMockServer::Endpoint.where(:category.exists => false)
+        end
+      end
+      erb :apis, layout: :document
     end
 
     get "/admin" do
