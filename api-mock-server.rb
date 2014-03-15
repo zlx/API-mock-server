@@ -53,7 +53,7 @@ module ApiMockServer
       ps = ps.delete_if {|k, v| k.blank? }
       args["status"] = args["status"].blank? ? 200 : args["status"].to_i
       args["active"] = !args["active"].nil?
-      args = args.slice("verb", "pattern", "response", "status", "active", "category")
+      args = args.slice("verb", "pattern", "response", "status", "active", "category", "desc")
       return args, ps
     end
 

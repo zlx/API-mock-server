@@ -4,7 +4,8 @@
       <%= @error.join("<br/>") %>
     </div>
   <% end %>
-  <div class='form-group well url'>
+  <div class='well'>
+  <div class='form-group url'>
     <label class="col-md-2 control-label">URL</label>
     <div class='col-md-10 row'>
       <div class='col-md-4'>
@@ -19,6 +20,13 @@
         <input type="text" placeholder="URL" class='form-control' name="route[pattern]" value='<%= @route.pattern %>'></input>
       </div>
     </div>
+  </div>
+  <div class='form-group'>
+    <label class='col-md-2 control-label'>Desc</label>
+    <div class='col-md-10'>
+      <textarea name='route[desc]' placeholder='Desc Your URL...' cols='100' rows='5'><%= @route.desc %></textarea>
+    </div>
+  </div>
   </div>
   <div class='form-group well category'>
     <label class='col-md-2 control-label'>Category</label>

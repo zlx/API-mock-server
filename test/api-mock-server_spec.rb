@@ -1,15 +1,7 @@
-ENV['RACK_ENV'] = 'test'
-
-require File.join(File.dirname(__FILE__), '../boot')
-require 'rspec'
-require 'rack/test'
+require_relative './spec_helper'
 
 describe ApiMockServer do
-  include Rack::Test::Methods
-
-  def app
-    ApiMockServer::App
-  end
+  let(:app) { ApiMockServer::App }
   let(:route) { ApiMockServer::Endpoint.create(verb: 'get', pattern: '/me', response: '{"me": "ok"}', status: 200) }
   let(:login) { authorize("admin", "admin") }
 
