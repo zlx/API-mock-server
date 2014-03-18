@@ -7,6 +7,7 @@ module ApiMockServer
       set :partial_template_engine, :erb
 
       use Rack::MethodOverride
+      set :public_folder, File.dirname(__FILE__) + '/assets'
 
       # for sinatra reloader code when development
       register Sinatra::Reloader

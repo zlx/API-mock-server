@@ -1,6 +1,5 @@
 # encoding: utf-8
 require 'json'
-require 'models/endpoint'
 require 'app'
 
 module ApiMockServer
