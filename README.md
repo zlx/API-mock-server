@@ -137,3 +137,9 @@ pid "#{@dir}tmp/pids/unicorn.pid"
 stderr_path "#{@dir}log/unicorn.stderr.log"
 stdout_path "#{@dir}log/unicorn.stdout.log"
 ```
+
+### similar projects
+
+1. [mockable.io](http://www.mockable.io/)
+2. [Mock Server](http://www.mock-server.com/)
+3. [mocky](http://www.mocky.io/)
